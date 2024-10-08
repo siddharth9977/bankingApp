@@ -6,6 +6,11 @@ import React from 'react'
 
 const Transfer = async () => {
   const loggedIn = await getLoggedInUser();
+  if (!loggedIn) {
+    console.log("User is not logged in.");
+    // Handle the case when there is no logged in user
+    return; 
+  }
   const accounts = await getAccounts({ 
     userId: loggedIn.$id 
   })

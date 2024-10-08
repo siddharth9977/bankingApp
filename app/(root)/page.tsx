@@ -8,8 +8,13 @@ import { getLoggedInUser } from '@/lib/actions/user.action';
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
   const loggedIn = await getLoggedInUser();
+  if (!loggedIn) {
+    console.log("User is not logged in.");
+    // Handle the case when there is no logged in user
+    return; 
+  }
   const accounts = await getAccounts({ 
-    userId: loggedIn.$id 
+    userId: loggedIn.$id
   })
 
   if(!accounts) return;

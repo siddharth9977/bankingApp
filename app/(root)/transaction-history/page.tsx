@@ -1,14 +1,20 @@
-import HeaderBox from '@/components/HeaderBox'
-import { Pagination } from '@/components/Pagination';
-import TransactionsTable from '@/components/TransactionsTable';
+import HeaderBox from '@/components/ui/HeaderBox'
+import { Pagination } from '@/components/ui/Pagination';
+import TransactionsTable from '@/components/ui/TransactionTable';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
-import { getLoggedInUser } from '@/lib/actions/user.actions';
+import { getLoggedInUser } from '@/lib/actions/user.action';
 import { formatAmount } from '@/lib/utils';
 import React from 'react'
 
 const TransactionHistory = async ({ searchParams: { id, page }}:SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
   const loggedIn = await getLoggedInUser();
+
+  if (!loggedIn) {
+    console.log("User is not logged in.");
+    // Handle the case when there is no logged in user
+    return; 
+  }
   const accounts = await getAccounts({ 
     userId: loggedIn.$id 
   })

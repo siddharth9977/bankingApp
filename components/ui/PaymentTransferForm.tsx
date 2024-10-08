@@ -7,13 +7,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { createTransfer } from "@/lib/actions/dwolla.actions";
-import { createTransaction } from "@/lib/actions/transaction.actions";
-import { getBank, getBankByAccountId } from "@/lib/actions/user.actions";
+import { createTransfer } from "@/lib/actions/dwolla.action";
+import { createTransaction } from "@/lib/actions/transaction.action";
+import { getBank, getBankByAccountId } from "@/lib/actions/user.action";
 import { decryptId } from "@/lib/utils";
 
 import { BankDropdown } from "./BankDropdown";
-import { Button } from "./ui/button";
+import { Button } from "./button";
 import {
   Form,
   FormControl,
@@ -22,9 +22,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+} from "./form";
+import { Input } from "./input";
+import { Textarea } from "./textarea";
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
